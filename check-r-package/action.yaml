@@ -5,6 +5,14 @@ inputs:
   args:
     description: 'Arguments to pass to the `args` parameter of rcmdcheck. Must be an R expression. Note that it often needs to be quoted in YAML, see the README for details.'
     default: 'c("--no-manual", "--as-cran")'
+  skip-ascii-code:
+    description: |
+      Whether to skip the ascii code check. Possible values are 'true',  'false', 'always'.
+    default: false
+  skip-ascii-data:
+    description: |
+      Whether to skip the ascii data check. Possible values are 'true',  'false', 'always'.
+    default: false
   build_args:
     description: 'Arguments to pass to the `build_args` parameter of rcmdcheck. Note that it often needs to be quoted in YAML, see the README for details.'
     default: '"--no-manual"'
@@ -45,6 +53,10 @@ runs:
         cat("LOGNAME=", Sys.info()[["user"]], "\n", sep = "", file = Sys.getenv("GITHUB_ENV"), append = TRUE)
         if (Sys.getenv("_R_CHECK_FORCE_SUGGESTS_", "") == "") Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "false")
         if (Sys.getenv("_R_CHECK_CRAN_INCOMING_", "") == "") Sys.setenv("_R_CHECK_CRAN_INCOMING_" = "false")
+        if (Sys.getenv("_R_CHECK_CRAN_INCOMING_", "") == "") Sys.setenv("_R_CHECK_CRAN_INCOMING_" = "false")
+        if (${{ inputs.skip-ascii-code }} == 'true' || ${{ inputs.skip-ascii-code }} 'always') Sys.setenv("_R_CHECK_ASCII_CODE_" = FALSE)
+        if (${{ inputs.skip-ascii-data }} == 'true' || ${{ inputs.skip-ascii-data }} 'always') Sys.setenv("_R_CHECK_ASCII_DATA_" = FALSE)
+        upload-results
         cat("check-dir-path=", file.path(getwd(), (${{ inputs.check-dir }})), "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)
         check_results <- rcmdcheck::rcmdcheck(args = (${{ inputs.args }}), build_args = (${{ inputs.build_args }}), error_on = (${{ inputs.error-on }}), check_dir = (${{ inputs.check-dir }}))
       shell: Rscript {0}
