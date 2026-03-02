@@ -64,8 +64,6 @@ runs:
         if (Sys.getenv("_R_CHECK_FORCE_SUGGESTS_", "") == "") Sys.setenv("_R_CHECK_FORCE_SUGGESTS_" = "false")
         if (Sys.getenv("_R_CHECK_CRAN_INCOMING_", "") == "") Sys.setenv("_R_CHECK_CRAN_INCOMING_" = "false")
         if (Sys.getenv("_R_CHECK_CRAN_INCOMING_", "") == "") Sys.setenv("_R_CHECK_CRAN_INCOMING_" = "false")
-        print(Sys.getenv("_R_CHECK_ASCII_CODE_"))
-        print(Sys.getenv("_R_CHECK_ASCII_DATA_"))
         cat("check-dir-path=", file.path(getwd(), (${{ inputs.check-dir }})), "\n", file = Sys.getenv("GITHUB_OUTPUT"), sep = "", append = TRUE)
         check_results <- rcmdcheck::rcmdcheck(args = (${{ inputs.args }}), build_args = (${{ inputs.build_args }}), error_on = (${{ inputs.error-on }}), check_dir = (${{ inputs.check-dir }}))
       shell: Rscript {0}
