@@ -49,10 +49,10 @@ runs:
     - name: Set environment variables based on input args
       run: |
         if [ "${{ (inputs.skip-ascii-code == 'true') || (inputs.skip-ascii-code == 'always') }}" ]; then
-          echo "_R_CHECK_ASCII_CODE_=true" >> $GITHUB_ENV
+          echo "_R_CHECK_ASCII_CODE_=false" >> $GITHUB_ENV
         fi
         if [ "${{ (inputs.skip-ascii-data == 'true') || (inputs.skip-ascii-data == 'always') }}" ]; then
-          echo "_R_CHECK_ASCII_DATA_=true" >> $GITHUB_ENV
+          echo "_R_CHECK_ASCII_DATA_=false" >> $GITHUB_ENV
         fi
       shell: bash
 
