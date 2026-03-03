@@ -52,7 +52,7 @@ runs:
     - name: Set environment variables based on input args
       if: always()
       run: |
-        echo "${ format('{0}-{1}-r{2}-{3}-testthat-snapshots' }}"
+        echo "${{ runner.os}} ${{ runner.arch }} ${{ matrix.config.r }}  ${{ matrix.config.id }} ${{ strategy.job-index }}"
         if [ "${{ (inputs.skip-ascii-code == 'true') || (inputs.skip-ascii-code == 'always') }}" ]; then
           echo "_R_CHECK_ASCII_CODE_=false" >> $GITHUB_ENV
         fi
