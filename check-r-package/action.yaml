@@ -59,7 +59,7 @@ runs:
           echo "_R_CHECK_ASCII_DATA_=false" >> $GITHUB_ENV
         fi
         if [ "${{ (inputs.skip-system-clock == 'true') || (inputs.skip-system-clock == 'always') }}" ]; then
-          echo "_R_CHECK_SYSTEM_CLOCK__=false" >> $GITHUB_ENV
+          echo "_R_CHECK_SYSTEM_CLOCK_=false" >> $GITHUB_ENV
         fi
 
       shell: bash
