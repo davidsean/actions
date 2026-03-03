@@ -52,7 +52,6 @@ runs:
     - name: Set environment variables based on input args
       if: always()
       run: |
-        echo "${{ runner.os}} ${{ runner.arch }} ${{ matrix.config.r }}  ${{ matrix.config.id }} ${{ strategy.job-index }}"
         if [ "${{ (inputs.skip-ascii-code == 'true') || (inputs.skip-ascii-code == 'always') }}" ]; then
           echo "_R_CHECK_ASCII_CODE_=false" >> $GITHUB_ENV
         fi
@@ -65,6 +64,7 @@ runs:
       shell: bash
 
     - name: Check
+      id: rcmdcheck
       if: always()
       run: |
         ## --------------------------------------------------------------------
