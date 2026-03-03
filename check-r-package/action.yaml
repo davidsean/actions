@@ -13,6 +13,10 @@ inputs:
     description: |
       Whether to skip the ascii data check. Possible values are 'true', 'false', 'always'.
     default: false
+  skip-system-clock:
+    description: |
+      Whether to skip the future file timestamps check. Possible values are 'true', 'false', 'always'.
+    default: false
   build_args:
     description: 'Arguments to pass to the `build_args` parameter of rcmdcheck. Note that it often needs to be quoted in YAML, see the README for details.'
     default: '"--no-manual"'
@@ -54,6 +58,10 @@ runs:
         if [ "${{ (inputs.skip-ascii-data == 'true') || (inputs.skip-ascii-data == 'always') }}" ]; then
           echo "_R_CHECK_ASCII_DATA_=false" >> $GITHUB_ENV
         fi
+        if [ "${{ (inputs.skip-system-clock == 'true') || (inputs.skip-system-clock == 'always') }}" ]; then
+          echo "_R_CHECK_SYSTEM_CLOCK__=false" >> $GITHUB_ENV
+        fi
+
       shell: bash
 
     - name: Check
