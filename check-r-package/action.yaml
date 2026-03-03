@@ -49,8 +49,8 @@ inputs:
 runs:
   using: "composite"
   steps: 
-
     - name: Set environment variables based on input args
+      if: always()
       run: |
         if [ "${{ (inputs.skip-ascii-code == 'true') || (inputs.skip-ascii-code == 'always') }}" ]; then
           echo "_R_CHECK_ASCII_CODE_=false" >> $GITHUB_ENV
@@ -61,10 +61,10 @@ runs:
         if [ "${{ (inputs.skip-system-clock == 'true') || (inputs.skip-system-clock == 'always') }}" ]; then
           echo "_R_CHECK_SYSTEM_CLOCK_=false" >> $GITHUB_ENV
         fi
-
       shell: bash
 
     - name: Check
+      if: always()
       run: |
         ## --------------------------------------------------------------------
         options(crayon.enabled = TRUE)
