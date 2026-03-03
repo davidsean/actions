@@ -33,6 +33,12 @@ Inputs available:
   for testthat snapshots. The default is
   `{os}-{arch}-r{rversion}-{id}-testthat-snapsots`, where `{id}` is
   `matrix.config.id` or `strategy.job-index` if the former is not defined.
+- skip-ascii-code - Whether to skip the ascii code check. Possible values are
+  'true', 'false', 'always'. Default is 'false'.
+- skip-ascii-data - Whether to skip the ascii data check. Possible values are
+  'true', 'false', 'always'. Default is 'false'.
+- skip-system-clock - Whether to skip the future file timestamps check.
+  Possible values are 'true', 'false', 'always'. Default is 'false'.
 
 Basic:
 ```yaml
@@ -60,7 +66,11 @@ steps:
     args: 'c("--no-manual", "--as-cran")'
     error-on: '"error"'
     check-dir: '"check"'
+    skip-ascii-code: true
+    skip-ascii-data: true
+    skip-system-clock: true
 ```
+
 
 ## Quoting R expressions
 
