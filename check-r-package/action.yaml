@@ -5,18 +5,6 @@ inputs:
   args:
     description: 'Arguments to pass to the `args` parameter of rcmdcheck. Must be an R expression. Note that it often needs to be quoted in YAML, see the README for details.'
     default: 'c("--no-manual", "--as-cran")'
-  skip-ascii-code:
-    description: |
-      Whether to skip the ascii code check. Possible values are 'true', 'false', 'always'.
-    default: false
-  skip-ascii-data:
-    description: |
-      Whether to skip the ascii data check. Possible values are 'true', 'false', 'always'.
-    default: false
-  skip-system-clock:
-    description: |
-      Whether to skip the future file timestamps check. Possible values are 'true', 'false', 'always'.
-    default: false
   build_args:
     description: 'Arguments to pass to the `build_args` parameter of rcmdcheck. Note that it often needs to be quoted in YAML, see the README for details.'
     default: '"--no-manual"'
@@ -45,6 +33,18 @@ inputs:
   snapshot-artifact-name:
     description: |
       Use this to override the default artifact name for testthat snapshots.
+  skip-ascii-code:
+    description: |
+      Whether to skip the ascii code check. Possible values are 'true', 'false', 'always'.
+    default: false
+  skip-ascii-data:
+    description: |
+      Whether to skip the ascii data check. Possible values are 'true', 'false', 'always'.
+    default: false
+  skip-system-clock:
+    description: |
+      Whether to skip the future file timestamps check. Possible values are 'true', 'false', 'always'.
+    default: false
 
 runs:
   using: "composite"
